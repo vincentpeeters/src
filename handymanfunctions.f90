@@ -16,6 +16,10 @@
         const_1 = 1.0d0
     end function
 
+    real(dp) function VIPsquare(x)
+        real(dp), intent(in):: x
+        VIPsquare = x*x
+    end function
 
     end module handymanfunctions
 

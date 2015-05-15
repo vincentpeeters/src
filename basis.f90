@@ -26,8 +26,9 @@
 !                    call runTests()
 !                endif
 !            END DO
-        i=1
-        CALL getarg(i, arg)
+
+
+        CALL getarg(1, arg)
         if (arg == '--help') then
             call printHelp()
         endif
@@ -35,8 +36,7 @@
             call runTests()
         endif
         if (arg == '--lagrange') then
-            i= i+1
-            CALL getarg(i, arg)
+            CALL getarg(2, arg)
             call runlagrange(arg)
         endif
 

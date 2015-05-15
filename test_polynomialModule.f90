@@ -1,4 +1,3 @@
-
     program test_lagrange
 
     use polynomialModule

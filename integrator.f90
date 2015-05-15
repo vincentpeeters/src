@@ -1,5 +1,6 @@
     module integrator
     use handymanfunctions
+!    use dqag
 	implicit none
 	save
 
@@ -31,7 +32,7 @@
         end do
 	end function
 
-!    integrates the function f from a to b, using the given points fx determined as values for f at points x
+!    integrates the function fusing the given points fx determined as values for f at points x
 !
 !   x   real(:)     points where the function is known
 !   fx   real(:)    values of the function at known points
@@ -67,8 +68,27 @@
 
 !    function weightsForGaussQuadrature(a,b,alpha,beta,steps) result(res)
 !        real, intent(in):: a,b,alpha,beta
-!        
+!
 !    end function
+
+    function quadIntegrator(f,a,b) result(res)
+        real(dp), external :: f
+        real(dp), intent(in) :: a,b
+        real(dp):: epsabs = 0.00001
+        real(dp):: epsrel = 0.00001
+        integer:: key = 5
+        real(dp) :: result, abserr
+        integer:: neval, ier
+        integer :: limit = 1000
+        integer:: lenw = 4000
+        integer:: last
+        integer :: iwork(1000)
+        real(dp) :: work(4000)
+        real(dp) :: res
+
+        call dqag(f,a,b,epsabs,epsrel,key,result,abserr,neval,ier,limit,lenw,last,iwork,work)
+        res = result
+    end function
 
     end module integrator
 
