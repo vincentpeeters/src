@@ -1,10 +1,10 @@
     module handymanfunctions
-	implicit none
-	save
+    implicit none
+    save
     integer, parameter :: dp = kind(1.d0)
     integer,parameter :: ip = selected_int_kind(15)
 	
-	contains
+    contains
 
     real(dp) function square(x)
         real(dp), intent(in):: x
@@ -22,5 +22,3 @@
     end function
 
     end module handymanfunctions
-
-    

@@ -1,14 +1,13 @@
     module integrator
     use handymanfunctions
-!    use dqag
-	implicit none
-	save
+    implicit none
+    save
 
     public :: samengesteldeTrapezium, samengesteldeTrapeziumVastePunten, gaussKwadratuur
 
-	contains
+    contains
 
-	!    integrates the function f from a to b according to the weight function in steps steps
+    !    integrates the function f from a to b according to the weight function in steps steps
 !
 !   f   (real function): real function to integrate
 !   a   (real): start of integration interval
@@ -18,8 +17,8 @@
 !
 !   result: (real) result of the integration
     function samengesteldeTrapezium(f,w,a,b,steps) result(res)
-		real(dp), intent(in):: a,b
-		integer, intent(in):: steps
+        real(dp), intent(in):: a,b
+        integer, intent(in):: steps
         real(dp), external:: f
         real(dp), external:: w
         integer ::i
@@ -30,7 +29,7 @@
         do i = 1,steps
             res  = res + dx*(f((i-1)*dx)*w((i-1)*dx)+f(i*dx)*w(i*dx))/2
         end do
-	end function
+    end function
 
 !    integrates the function fusing the given points fx determined as values for f at points x
 !
@@ -66,11 +65,8 @@
         res = 5.0d0
     end function
 
-!    function weightsForGaussQuadrature(a,b,alpha,beta,steps) result(res)
-!        real, intent(in):: a,b,alpha,beta
-!
-!    end function
 
+! TODO: Documentation
     function quadIntegrator(f,a,b) result(res)
         real(dp), external :: f
         real(dp), intent(in) :: a,b
@@ -91,5 +87,3 @@
     end function
 
     end module integrator
-
-    
